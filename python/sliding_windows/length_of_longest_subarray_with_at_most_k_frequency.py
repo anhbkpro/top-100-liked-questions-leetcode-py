@@ -3,18 +3,13 @@ from typing import List
 
 
 class Solution:
-    @staticmethod
-    def max_subarray_length(nums: List[int], k: int) -> int:
-        if k < 1:
-            return 0
-
-        left = 0
-        ans = 0
-        number_freq_map = Counter()
-        for right in range(len(nums)):
-            number_freq_map[nums[right]] += 1
-            while number_freq_map[nums[right]] > k:
-                number_freq_map[nums[left]] -= 1
-                left += 1
-            ans = max(ans, right - left + 1)
+    def maxSubarrayLength(self, nums: List[int], k: int) -> int:
+        ans, start = 0, -1
+        freq = Counter()
+        for end in range(len(nums)):
+            freq[nums[end]] += 1
+            while freq[nums[end]] > k:
+                start += 1
+                freq[nums[start]] -= 1
+            ans = max(ans, end - start)
         return ans
