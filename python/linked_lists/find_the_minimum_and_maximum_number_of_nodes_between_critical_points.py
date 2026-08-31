@@ -1,5 +1,4 @@
 from typing import List, Optional
-
 from .linked_list_node import LinkedListNode
 
 
